@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            background-color: #FFC0CB;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .bear {
+            width: 150px;
+            height: 150px;
+            background: url(https://media2.giphy.com/media/t2ZhGFLhnraNu1XiXK/giphy.webp?cid=ecf05e47u3vj4dralltqzhih3lbedd1ylkkcsoitjwgr2te9&ep=v1_stickers_search&rid=giphy.webp&ct=s) no-repeat center/contain;
+            animation: jiggle 0.8s infinite;
+        }
+        @keyframes jiggle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .no {
+            background-color: #f8d7da;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="bear"></div>
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Yes</button>
+        <button class="no" onclick="askAgain()">No</button>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+        function showLove() {
+            document.body.innerHTML = `<h1>Knew you would say yes, pookie! 💕</h1>
+                                      <div class='bear' style='background: url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExa29zYzlhNTZxdmttampiN2NhYXFoN2dmMXBhNDFvcnEzM28yNGNlNCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/fvN5KrNcKKUyX7hNIA/200.webp) no-repeat center/contain; width: 200px; height: 200px;'></div>`;
+        }
+        function askAgain() {
+            noClickCount++;
+            let noButton = document.querySelector('.no');
+            let yesButton = document.querySelector('.yes');
+            
+            if (noClickCount < 5) {
+                let messages = ["Are you sure?", "Really sure?", "Please pookie!", "Last chance, Pookie!", "Come on, say yes!"];
+                noButton.innerText = messages[noClickCount - 1];
+                yesButton.style.fontSize = `${1.5 + noClickCount * 0.5}rem`;
+            } else {
+                yesButton.style.fontSize = "5rem";
+                yesButton.style.width = "100%";
+                yesButton.style.height = "100vh";
+                yesButton.innerText = "YES!";
+                noButton.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
